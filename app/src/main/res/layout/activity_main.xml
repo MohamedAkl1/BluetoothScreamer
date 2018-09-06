@@ -6,9 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/bt_devices_names_rv"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/selected_devices_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/devices_set_up_for_alert"
+            android:id="@+id/devices_set_up_for_alert_id"
+            app:layout_constraintBottom_toTopOf="@id/bt_devices_names_rv"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="8dp"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bt_devices_names_rv"
+            app:layout_constraintTop_toBottomOf="@id/devices_set_up_for_alert_id"
+            android:layout_marginTop="8dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/selected_devices_layout"
+        android:layout_marginTop="13dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/not_selected_devices_tv"
+            android:textSize="15sp"
+            android:layout_marginStart="8dp"
+            android:text="@string/not_selected_devices"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/not_selected_devices_rv"
+            app:layout_constraintTop_toBottomOf="@id/not_selected_devices_tv"
+            android:layout_marginTop="8dp"/>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

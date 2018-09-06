@@ -1,4 +1,4 @@
-package com.example.intern.bluetoothscreamer;
+package com.example.intern.bluetoothscreamer.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,24 +6,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.intern.bluetoothscreamer.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class BTNamesRecyclerAdapter  extends RecyclerView.Adapter<BTNamesRecyclerAdapter.ViewHolder>{
 
     private List<String> names;
     private LayoutInflater mLayoutInflater;
+    boolean editMode;
 
-    public BTNamesRecyclerAdapter(Context context, Set<String> names1) {
+    public BTNamesRecyclerAdapter(Context context, List<String> names1, boolean editMode) {
 
         names = new ArrayList<>();
         this.names.addAll(names1);
         this.mLayoutInflater = LayoutInflater.from(context);
+        this.editMode = editMode ;
     }
 
     @NonNull
@@ -46,10 +48,12 @@ public class BTNamesRecyclerAdapter  extends RecyclerView.Adapter<BTNamesRecycle
     class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView bTNameTextView;
+        Button mButton;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             bTNameTextView = itemView.findViewById(R.id.bt_device_name_tv);
+            mButton = itemView.findViewById(R.id.edit_device_edit_text);
         }
     }
 }
