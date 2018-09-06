@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.intern.bluetoothscreamer.adapter.BTNamesRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -26,8 +27,10 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
     static final int REQUEST_ENABLE_BT = 112;
     static final String SELECTED_DEVICES = "selected_devices";
     static final String NOT_SELECTED_DEVICES = "not_selected_devices";
+    static final String ALL_DEVICES = "all_devices";
+    static final String SELECTED_DEVICES_INDICES = "selected_devices_indices";
 
-
+    List<String> allDevices;
     List<String> selectedDevices;
     List<String> notSelectedDevices;
     MainPresenter mMainPresenter;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
     BTNamesRecyclerAdapter mBTSelectedNamesRecyclerAdapter, mBTNamesNotSelectedRecyclerAdapter;
     Set<String> bTDeviceNames;
     WelcomeDialog dialog;
+    List<Integer> devicesIndices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
         setContentView(R.layout.activity_main);
         dialog = new WelcomeDialog(getApplicationContext(),null);
 
+        devicesIndices = new ArrayList<>();
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mMainPresenter = new MainPresenter(this);
         bTDeviceNames = new HashSet<>();
@@ -75,14 +80,35 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         if(item.getItemId() == R.id.edit){
             if(item.getTitle().toString().toLowerCase().equals("edit")){
-                displaySelectedDevices(selectedDevices,true);
-                displayNotSelectedDevices(notSelectedDevices,true);
+                new MaterialDialog.Builder(this)
+                        .items(allDevices)
+                        .cancelable(false)
+                        .itemsCallbackMultiChoice(getSetOfIndices(selectedDevices, allDevices),
+                                new MaterialDialog.ListCallbackMultiChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                selectedDevices.clear();
+                                for (Integer aWhich : which) {
+                                    selectedDevices.add(allDevices.get(aWhich));
+                                }
+                                mSharedPreferences.edit().putStringSet(SELECTED_DEVICES, new HashSet<>(selectedDevices)).apply();
+                                List<String> mockList = new ArrayList<>(allDevices);
+                                mockList.removeAll(selectedDevices);
+                                mSharedPreferences.edit().putStringSet(NOT_SELECTED_DEVICES, new HashSet<>(mockList)).apply();
+                                notSelectedDevices = mockList;
+                                displaySelectedDevices(selectedDevices);
+                                displayNotSelectedDevices(notSelectedDevices);
+                                dialog.dismiss();
+                                item.setTitle("edit");
+                                return true;
+                            }
+                        })
+                        .positiveText("Submit")
+                        .build().show();
                 item.setTitle("Submit");
-            }else{
-
             }
         }
         return super.onOptionsItemSelected(item);
@@ -92,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
     public void onDialogSubmit(List<String> selectedNames, List<String> notSelectedNames) {
         this.selectedDevices = selectedNames;
         this.notSelectedDevices = notSelectedNames;
-        displaySelectedDevices(selectedNames,false);
-        displayNotSelectedDevices(notSelectedNames,false);
+        displaySelectedDevices(selectedNames);
+        displayNotSelectedDevices(notSelectedNames);
         dialog.dismiss();
     }
 
@@ -104,14 +130,25 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
         mSharedPreferences = getSharedPreferences(SELECTED_PAIRED_DEVICES,MODE_PRIVATE);
         Set<String> retrievedSelectedDeviceNames = mSharedPreferences.getStringSet(SELECTED_DEVICES,null);
         Set<String> retrievedNotSelectedDeviceNames = mSharedPreferences.getStringSet(NOT_SELECTED_DEVICES,null);
+        Set<String> retrievedAllDevicesNames = mSharedPreferences.getStringSet(ALL_DEVICES,null);
 
-        return retrievedSelectedDeviceNames != null || retrievedNotSelectedDeviceNames != null;
+        return retrievedSelectedDeviceNames != null || retrievedNotSelectedDeviceNames != null || retrievedAllDevicesNames != null;
     }
 
     @Override
     public void addSharedPreferences(List<String> selectedDevices, List<String> notSelectedDevices) {
         mSharedPreferences.edit().putStringSet(SELECTED_DEVICES, new HashSet<>(selectedDevices)).apply();
         mSharedPreferences.edit().putStringSet(NOT_SELECTED_DEVICES,new HashSet<>(notSelectedDevices)).apply();
+        mSharedPreferences.edit().putStringSet(ALL_DEVICES, new HashSet<>(allDevices)).apply();
+    }
+
+    private Integer[] getSetOfIndices(List<String> selectedDevices, List<String> allDevices) {
+        devicesIndices.clear();
+        for(String device : selectedDevices){
+            devicesIndices.add(allDevices.indexOf(device));
+        }
+        Integer[] temp = new Integer[devicesIndices.size()];
+        return devicesIndices.toArray(temp);
     }
 
     @Override
@@ -129,15 +166,17 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
         mSharedPreferences = getSharedPreferences(SELECTED_PAIRED_DEVICES,MODE_PRIVATE);
         Set<String> retrievedSelectedDeviceNames = mSharedPreferences.getStringSet(SELECTED_DEVICES,null);
         Set<String> retrievedNotSelectedDeviceNames = mSharedPreferences.getStringSet(NOT_SELECTED_DEVICES,null);
+        Set<String> retrievedAllDevicesNames = mSharedPreferences.getStringSet(ALL_DEVICES,null);
 
-        List<String> selectedDevices = new ArrayList<>(retrievedSelectedDeviceNames);
-        List<String> notSelectedDevices = new ArrayList<>(retrievedNotSelectedDeviceNames);
+        assert retrievedAllDevicesNames != null;
+        this.allDevices = new ArrayList<>(retrievedAllDevicesNames);
+        assert retrievedSelectedDeviceNames != null;
+        this.selectedDevices = new ArrayList<>(retrievedSelectedDeviceNames);;
+        assert retrievedNotSelectedDeviceNames != null;
+        this.notSelectedDevices = new ArrayList<>(retrievedNotSelectedDeviceNames);;
 
-        this.selectedDevices = selectedDevices;
-        this.notSelectedDevices = notSelectedDevices;
-
-        displaySelectedDevices(selectedDevices,false);
-        displayNotSelectedDevices(notSelectedDevices,false);
+        displaySelectedDevices(selectedDevices);
+        displayNotSelectedDevices(notSelectedDevices);
     }
 
     void getPairedNames(){
@@ -146,19 +185,20 @@ public class MainActivity extends AppCompatActivity implements WelcomeDialog.OnD
             bTDeviceNames.add(device.getName());
         }
         dialog = new WelcomeDialog(this,bTDeviceNames);
+        allDevices = new ArrayList<>(bTDeviceNames);
         dialog.show();
 
     }
 
-    void displaySelectedDevices(List<String> selectedNames,boolean editMode){
-        mBTSelectedNamesRecyclerAdapter = new BTNamesRecyclerAdapter(this,selectedNames,editMode);
+    void displaySelectedDevices(List<String> selectedNames){
+        mBTSelectedNamesRecyclerAdapter = new BTNamesRecyclerAdapter(this,selectedNames);
         selectedNamesRecyclerView = findViewById(R.id.bt_devices_names_rv);
         selectedNamesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         selectedNamesRecyclerView.setAdapter(mBTSelectedNamesRecyclerAdapter);
     }
 
-    void displayNotSelectedDevices(List<String> notSelectedNames, boolean editMode){
-        mBTNamesNotSelectedRecyclerAdapter = new BTNamesRecyclerAdapter(this,notSelectedNames,editMode);
+    void displayNotSelectedDevices(List<String> notSelectedNames){
+        mBTNamesNotSelectedRecyclerAdapter = new BTNamesRecyclerAdapter(this,notSelectedNames);
         notSelectedNamesRecyclerView = findViewById(R.id.not_selected_devices_rv);
         notSelectedNamesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         notSelectedNamesRecyclerView.setAdapter(mBTNamesNotSelectedRecyclerAdapter);

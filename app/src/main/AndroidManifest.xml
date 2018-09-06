@@ -26,9 +26,16 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".NewPairedDeviceReveiver">
+            <intent-filter>
+                <action android:name="android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".adapter.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".DisconnectionActivity"></activity>
     </application>
 
 </manifest>

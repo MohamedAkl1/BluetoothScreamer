@@ -18,14 +18,12 @@ public class BTNamesRecyclerAdapter  extends RecyclerView.Adapter<BTNamesRecycle
 
     private List<String> names;
     private LayoutInflater mLayoutInflater;
-    boolean editMode;
 
-    public BTNamesRecyclerAdapter(Context context, List<String> names1, boolean editMode) {
+    public BTNamesRecyclerAdapter(Context context, List<String> names1) {
 
         names = new ArrayList<>();
         this.names.addAll(names1);
         this.mLayoutInflater = LayoutInflater.from(context);
-        this.editMode = editMode ;
     }
 
     @NonNull
