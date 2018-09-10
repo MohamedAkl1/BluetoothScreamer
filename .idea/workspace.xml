@@ -11,22 +11,25 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c2577b9d-5850-44cd-8423-08e8ef32b601" name="Default" comment="">
+    <list default="true" id="c2577b9d-5850-44cd-8423-08e8ef32b601" name="Default" comment="updated app name and package name">
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/DisconnectionActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/DisconnectionReciever.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/MainActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/MainPresenter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/MainView.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/NewPairedDeviceReveiver.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/NotificationIntentReceiver.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/SettingsActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/ShowNewPairedDeviceDialog.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/UnpairedDeviceReciever.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/WelcomeDialog.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/BTNamesRecyclerAdapter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/DisconnectionActivity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/DisconnectionReciever.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/MainActivity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/MainPresenter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/MainView.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/NewPairedDeviceReveiver.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/SettingsActivity.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/WelcomeDialog.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/adapter/BTNamesRecyclerAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_disconnection.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_disconnection.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/android/akl/bluetoothscreamer/BuildConfig.java" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/android/akl/bluetoothscreamer/BuildConfig.java" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/akl/bluetoothscreamer/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/akl/bluetoothscreamer/R.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/intern/bluetoothscreamer/ExampleInstrumentedTest.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/intern/bluetoothscreamer/ExampleUnitTest.java" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,21 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/MainView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NewPairedDeviceReveiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/NewPairedDeviceReveiver.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="309">
-              <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+              <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -85,22 +78,32 @@
       <file leaf-file-name="DisconnectionActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/DisconnectionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+            <state relative-caret-position="440">
+              <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WelcomeRecyclerAdapter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WelcomeRecyclerAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+            <state relative-caret-position="129">
+              <caret line="51" column="154" lean-forward="true" selection-start-line="51" selection-start-column="154" selection-end-line="51" selection-end-column="154" />
               <folding>
-                <element signature="e#2207#2221#0" expanded="true" />
-                <element signature="e#2400#2412#0" expanded="true" />
+                <element signature="e#2204#2218#0" expanded="true" />
+                <element signature="e#2397#2409#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="R.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/akl/bluetoothscreamer/R.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="3812" column="2" lean-forward="false" selection-start-line="3812" selection-start-column="2" selection-end-line="3812" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +111,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
+            <state relative-caret-position="-1278">
               <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
               <folding />
             </state>
@@ -128,14 +131,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+            <state relative-caret-position="40">
+              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
               <folding>
                 <element signature="e#418#436#0" expanded="true" />
                 <element signature="e#1873#1906#0" expanded="true" />
@@ -2207,8 +2210,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_disconnection.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/DisconnectionActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/intern/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/build/generated/source/r/debug/com/example/intern/bluetoothscreamer/R.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java" />
       </list>
     </option>
   </component>
@@ -2319,6 +2324,12 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="BluetoothScreamer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -2531,7 +2542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536577136529</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated app name and package name">
+      <created>1536577552936</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1536577552936</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2559,7 +2577,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21588486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -2576,14 +2594,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="everything supposedly works." />
-    <option name="LAST_COMMIT_MESSAGE" value="everything supposedly works." />
+    <MESSAGE value="updated app name and package name" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated app name and package name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/MainActivity.java</url>
-          <line>142</line>
+          <line>141</line>
           <properties />
           <option name="timeStamp" value="52" />
         </line-breakpoint>
@@ -2665,8 +2684,8 @@
         <state relative-caret-position="800">
           <caret line="60" column="36" lean-forward="false" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
           <folding>
-            <element signature="e#2552#2553#0" expanded="false" />
-            <element signature="e#2596#2597#0" expanded="false" />
+            <element signature="e#2505#2506#0" expanded="false" />
+            <element signature="e#2549#2550#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3616,8 +3635,8 @@
         <state relative-caret-position="260">
           <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
           <folding>
-            <element signature="e#1850#1851#0" expanded="false" />
-            <element signature="e#1882#1883#0" expanded="false" />
+            <element signature="e#1803#1804#0" expanded="false" />
+            <element signature="e#1835#1836#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3627,8 +3646,8 @@
         <state relative-caret-position="500">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="e#1256#1257#0" expanded="false" />
-            <element signature="e#1291#1292#0" expanded="false" />
+            <element signature="e#1253#1254#0" expanded="false" />
+            <element signature="e#1288#1289#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3684,7 +3703,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/NewPairedDeviceReveiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
-          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -3702,26 +3721,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/DisconnectionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        <state relative-caret-position="440">
+          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/com/android/akl/bluetoothscreamer/R.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
-          <folding>
-            <element signature="e#2207#2221#0" expanded="true" />
-            <element signature="e#2400#2412#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="20">
+          <caret line="3812" column="2" lean-forward="false" selection-start-line="3812" selection-start-column="2" selection-end-line="3812" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
+        <state relative-caret-position="-1278">
           <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
           <folding />
         </state>
@@ -3732,11 +3748,22 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        <state relative-caret-position="40">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
           <folding>
             <element signature="e#418#436#0" expanded="true" />
             <element signature="e#1873#1906#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/akl/bluetoothscreamer/adapter/WelcomeRecyclerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="51" column="154" lean-forward="true" selection-start-line="51" selection-start-column="154" selection-end-line="51" selection-end-column="154" />
+          <folding>
+            <element signature="e#2204#2218#0" expanded="true" />
+            <element signature="e#2397#2409#0" expanded="true" />
           </folding>
         </state>
       </provider>
