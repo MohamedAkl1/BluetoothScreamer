@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.intern.bluetoothscreamer">
+    package="com.android.akl.bluetoothscreamer">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.android.akl.bluetoothscreamer.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,33 +20,33 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".DisconnectionReciever">
+        <receiver android:name="com.android.akl.bluetoothscreamer.DisconnectionReciever">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".NewPairedDeviceReveiver">
+        <receiver android:name="com.android.akl.bluetoothscreamer.NewPairedDeviceReveiver">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".UnpairedDeviceReciever">
+        <receiver android:name="com.android.akl.bluetoothscreamer.UnpairedDeviceReciever">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ShowNewPairedDeviceDialog"/>
+        <activity android:name="com.android.akl.bluetoothscreamer.ShowNewPairedDeviceDialog"/>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.android.akl.bluetoothscreamer.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".DisconnectionActivity"
+        <activity android:name="com.android.akl.bluetoothscreamer.DisconnectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
-        <receiver android:name=".NotificationIntentReceiver"/>
+        <receiver android:name="com.android.akl.bluetoothscreamer.NotificationIntentReceiver"/>
     </application>
 
 </manifest>

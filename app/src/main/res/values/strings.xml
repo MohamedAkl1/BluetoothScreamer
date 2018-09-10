@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bluetooth Screamer</string>
+    <string name="app_name">Dispager</string>
     <string name="bs_welcome_screen">ًWelcome to Bluetooth Screamer, Please choose the devices to alert you about:</string>
     <string name="welcome_dialog_add_button">add</string>
     <string name="submit">submit</string>

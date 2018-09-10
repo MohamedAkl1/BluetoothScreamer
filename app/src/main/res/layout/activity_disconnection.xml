@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/Theme.AppCompat.DayNight.NoActionBar"
-    tools:context=".DisconnectionActivity"
+    tools:context="com.android.akl.bluetoothscreamer.DisconnectionActivity"
     android:id="@+id/disconnection_activity_layout">
 
     <TextView
