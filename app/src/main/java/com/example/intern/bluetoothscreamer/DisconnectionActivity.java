@@ -1,5 +1,6 @@
 package com.example.intern.bluetoothscreamer;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -19,6 +20,7 @@ public class DisconnectionActivity extends AppCompatActivity {
     Button mButton;
     int temp = 0;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class DisconnectionActivity extends AppCompatActivity {
                     temp = 0;
                 }
             }
-        },500);
+        },1000);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

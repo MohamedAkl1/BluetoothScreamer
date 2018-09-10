@@ -7,7 +7,7 @@ public class MainPresenter {
 
     private MainView mMainView;
 
-    public MainPresenter(MainView mainView) {
+    MainPresenter(MainView mainView) {
         mMainView = mainView;
     }
 

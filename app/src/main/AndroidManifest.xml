@@ -28,14 +28,25 @@
 
         <receiver android:name=".NewPairedDeviceReveiver">
             <intent-filter>
-                <action android:name="android.bluetooth.adapter.action.CONNECTION_STATE_CHANGED"/>
+                <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".UnpairedDeviceReciever">
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ShowNewPairedDeviceDialog"/>
+
         <activity
-            android:name=".adapter.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".DisconnectionActivity"></activity>
+        <activity android:name=".DisconnectionActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+
+        <receiver android:name=".NotificationIntentReceiver"/>
     </application>
 
 </manifest>

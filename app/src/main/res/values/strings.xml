@@ -80,4 +80,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="dismiss">dismiss</string>
+    <string name="added">added</string>
+    <string name="add">add</string>
 </resources>

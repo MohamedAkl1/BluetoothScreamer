@@ -23,8 +23,8 @@ public class WelcomeRecyclerAdapter extends RecyclerView.Adapter<WelcomeRecycler
 
     private List<String> names;
     private LayoutInflater mLayoutInflater;
-    static List<String> selectedNames, notSelectedNames;
-    Context mContext;
+    private static List<String> selectedNames, notSelectedNames;
+    private Context mContext;
 
     public WelcomeRecyclerAdapter(Context context,Set<String> devicesNames){
         names = new ArrayList<>();
@@ -52,10 +52,10 @@ public class WelcomeRecyclerAdapter extends RecyclerView.Adapter<WelcomeRecycler
                 if(welcomeViewHolder.addButton.getText().toString().trim().equals(mContext.getResources().getString(R.string.welcome_dialog_add_button))){
                     selectedNames.add(names.get(welcomeViewHolder.getAdapterPosition()));
                     Toast.makeText(mContext,"added", Toast.LENGTH_SHORT).show();
-                    welcomeViewHolder.addButton.setText("added");
+                    welcomeViewHolder.addButton.setText(R.string.added);
                     notSelectedNames.remove(names.get(welcomeViewHolder.getAdapterPosition()));
                 }else {
-                    welcomeViewHolder.addButton.setText("add");
+                    welcomeViewHolder.addButton.setText(R.string.add);
                     welcomeViewHolder.addButton.setEnabled(true);
                     Toast.makeText(mContext,"Removed",Toast.LENGTH_SHORT).show();
                     selectedNames.remove(welcomeViewHolder.getAdapterPosition());
@@ -75,7 +75,7 @@ public class WelcomeRecyclerAdapter extends RecyclerView.Adapter<WelcomeRecycler
         TextView pairedName;
         Button addButton;
 
-        public WelcomeViewHolder(@NonNull View itemView) {
+        WelcomeViewHolder(@NonNull View itemView) {
             super(itemView);
 
             pairedName = itemView.findViewById(R.id.welcome_dialog_bt_name_tv);

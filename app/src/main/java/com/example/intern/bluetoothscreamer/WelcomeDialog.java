@@ -24,14 +24,11 @@ import static com.example.intern.bluetoothscreamer.adapter.WelcomeRecyclerAdapte
  */
 public class WelcomeDialog extends Dialog {
 
-    private RecyclerView devicesRV;
-    private WelcomeRecyclerAdapter mWelcomeRecyclerAdapter;
     private Set<String> bluetoothPairedNames;
-    Button submitButton;
     private static OnDialogSubmit mOnDialogSubmit;
-    private MainView mMainView;
+    private static MainView mMainView;
 
-    public WelcomeDialog(@NonNull Context context, Set<String> bTnames) {
+    WelcomeDialog(@NonNull Context context, Set<String> bTnames) {
         super(context);
         bluetoothPairedNames = new HashSet<>();
         this.bluetoothPairedNames = bTnames;
@@ -44,11 +41,11 @@ public class WelcomeDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_welcome);
 
-        devicesRV = findViewById(R.id.welcome_bt_devices_rv);
-        mWelcomeRecyclerAdapter = new WelcomeRecyclerAdapter(getContext(),bluetoothPairedNames);
+        RecyclerView devicesRV = findViewById(R.id.welcome_bt_devices_rv);
+        WelcomeRecyclerAdapter welcomeRecyclerAdapter = new WelcomeRecyclerAdapter(getContext(), bluetoothPairedNames);
         devicesRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        devicesRV.setAdapter(mWelcomeRecyclerAdapter);
-        submitButton = findViewById(R.id.submit_button);
+        devicesRV.setAdapter(welcomeRecyclerAdapter);
+        Button submitButton = findViewById(R.id.submit_button);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +67,6 @@ public class WelcomeDialog extends Dialog {
     }
 
     public void setMainViewListener(MainView mainViewListener){
-        this.mMainView = mainViewListener;
+        mMainView = mainViewListener;
     }
 }
