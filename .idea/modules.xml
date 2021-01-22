@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BluetoothScreamer.iml" filepath="$PROJECT_DIR$/BluetoothScreamer.iml" group="BluetoothScreamer" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="BluetoothScreamer/app" />
+      <module fileurl="file://$PROJECT_DIR$/BluetoothScreamer.iml" filepath="$PROJECT_DIR$/BluetoothScreamer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BluetoothScreamer.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BluetoothScreamer.app.iml" />
     </modules>
   </component>
 </project>
