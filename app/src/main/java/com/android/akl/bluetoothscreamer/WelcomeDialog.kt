@@ -3,7 +3,6 @@ package com.android.akl.bluetoothscreamer
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.Window
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,6 @@ class WelcomeDialog(context: Context?, bTnames: Set<String>?) : Dialog(context!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_welcome)
 
         val devicesRV: RecyclerView = findViewById(R.id.welcome_bt_devices_rv)
@@ -31,7 +29,7 @@ class WelcomeDialog(context: Context?, bTnames: Set<String>?) : Dialog(context!!
         submitButton.setOnClickListener {
             val selectedDevices: List<String> = welcomeRecyclerAdapter.selectedNames
             val notSelectedDevices: List<String> = welcomeRecyclerAdapter.notSelectedNames
-            mOnDialogSubmit!!.onDialogSubmit(selectedDevices, notSelectedDevices)
+            mOnDialogSubmit.onDialogSubmit(selectedDevices, notSelectedDevices)
         }
     }
 

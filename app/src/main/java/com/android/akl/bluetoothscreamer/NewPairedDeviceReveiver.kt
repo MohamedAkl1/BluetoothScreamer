@@ -8,7 +8,6 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.android.akl.bluetoothscreamer.ui.DispagerMainActivity
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.ALL_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.DISPAGER_DEVICES
 

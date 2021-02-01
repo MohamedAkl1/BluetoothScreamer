@@ -4,9 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.android.akl.bluetoothscreamer.R
 import com.android.akl.bluetoothscreamer.adapter.WelcomeRecyclerAdapter.WelcomeViewHolder
@@ -28,23 +26,20 @@ class WelcomeRecyclerAdapter(context: Context, devicesNames: Set<String>?) : Rec
         return WelcomeViewHolder(view)
     }
 
-    override fun onBindViewHolder(welcomeViewHolder: WelcomeViewHolder, i: Int) {
-        welcomeViewHolder.pairedName.text = names.get(i)
-        Toast.makeText(mContext, "added " + names[i], Toast.LENGTH_SHORT).show()
-        welcomeViewHolder.addButton.setOnClickListener(View.OnClickListener {
-            if ((welcomeViewHolder.addButton.text.toString().trim { it <= ' ' } == mContext.resources.getString(R.string.welcome_dialog_add_button))) {
+    override fun onBindViewHolder(welcomeViewHolder: WelcomeViewHolder, position: Int) {
+        welcomeViewHolder.pairedName.text = names[position]
+        Toast.makeText(mContext, "added " + names[position], Toast.LENGTH_SHORT).show()
+        welcomeViewHolder.addCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
                 selectedNames.add(names[welcomeViewHolder.adapterPosition])
                 Toast.makeText(mContext, "added", Toast.LENGTH_SHORT).show()
-                welcomeViewHolder.addButton.setText(R.string.added)
                 notSelectedNames.remove(names[welcomeViewHolder.adapterPosition])
-            } else {
-                welcomeViewHolder.addButton.setText(R.string.add)
-                welcomeViewHolder.addButton.isEnabled = true
+            }else{
                 Toast.makeText(mContext, "Removed", Toast.LENGTH_SHORT).show()
-                selectedNames.removeAt(welcomeViewHolder.adapterPosition)
+                selectedNames.remove(names[welcomeViewHolder.adapterPosition])
                 notSelectedNames.add(names[welcomeViewHolder.adapterPosition])
             }
-        })
+        }
     }
 
     override fun getItemCount(): Int {
@@ -53,7 +48,7 @@ class WelcomeRecyclerAdapter(context: Context, devicesNames: Set<String>?) : Rec
 
     inner class WelcomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var pairedName: TextView = itemView.findViewById(R.id.welcome_dialog_bt_name_tv)
-        var addButton: Button = itemView.findViewById(R.id.welcome_add_button)
-
+//        var addButton: Button = itemView.findViewById(R.id.welcome_add_button)
+        var addCheckBox: CheckBox = itemView.findViewById(R.id.add_checkbox)
     }
 }

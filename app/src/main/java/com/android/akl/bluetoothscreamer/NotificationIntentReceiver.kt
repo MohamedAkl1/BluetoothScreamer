@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationManagerCompat
-import com.android.akl.bluetoothscreamer.ui.DispagerMainActivity
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.ALL_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.DISPAGER_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.NOT_SELECTED_DEVICES

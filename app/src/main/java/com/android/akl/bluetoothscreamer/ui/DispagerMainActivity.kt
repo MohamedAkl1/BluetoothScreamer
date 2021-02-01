@@ -5,34 +5,44 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.android.akl.bluetoothscreamer.R
 import com.android.akl.bluetoothscreamer.WelcomeDialog
 import com.android.akl.bluetoothscreamer.WelcomeDialog.OnDialogSubmit
 import com.android.akl.bluetoothscreamer.adapter.BTNamesRecyclerAdapter
+import com.android.akl.bluetoothscreamer.databinding.ActivityMainBinding
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.REQUEST_ENABLE_BT
+import com.android.akl.bluetoothscreamer.util.Helper
+
 
 class DispagerMainActivity : AppCompatActivity(), OnDialogSubmit {
 
     private val dispagerMainViewModel: DispagerMainViewModel by viewModels()
     private val tag = "DispagerMainActivity"
     private var mBluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-    private lateinit var selectedNamesRecyclerView: RecyclerView
-    private lateinit var notSelectedNamesRecyclerView: RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private lateinit var mBTSelectedNamesRecyclerAdapter: BTNamesRecyclerAdapter
     private lateinit var mBTNamesNotSelectedRecyclerAdapter: BTNamesRecyclerAdapter
     private lateinit var dialog: WelcomeDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        binding.toolbar.setTitleTextAppearance(this, R.style.RubikBoldTextAppearance)
+        setSupportActionBar(binding.toolbar)
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        selectedNamesRecyclerView = findViewById(R.id.bt_devices_names_rv)
-        notSelectedNamesRecyclerView = findViewById(R.id.not_selected_devices_rv)
 
         if (!dispagerMainViewModel.checkSharedPreferences(this)) {
             setupSharedPreferences()
@@ -42,29 +52,41 @@ class DispagerMainActivity : AppCompatActivity(), OnDialogSubmit {
 
     private fun observeValues() {
         dispagerMainViewModel.allDevicesLiveData.observe(this, {
-            if(dispagerMainViewModel.selectedDevicesLiveData.value == null &&
-                    dispagerMainViewModel.notSelectedDevicesLiveData.value == null&&
+            if (dispagerMainViewModel.selectedDevicesLiveData.value == null &&
+                    dispagerMainViewModel.notSelectedDevicesLiveData.value == null &&
                     it != null)
                 displayWelcomeDialog(it)
         })
 
         dispagerMainViewModel.selectedDevicesLiveData.observe(this, {
-            if(it != null && it.isNotEmpty())
+            if (it != null && it.isNotEmpty()){
                 displaySelectedDevices(it.toList())
-            else
+                binding.emptySelected.root.visibility = GONE
+            }
+            else{
                 displaySelectedDevices(mutableListOf())
+                binding.emptySelected.root.visibility = VISIBLE
+            }
         })
 
         dispagerMainViewModel.notSelectedDevicesLiveData.observe(this, {
-            if (it != null && it.isNotEmpty())
+            if (it != null && it.isNotEmpty()){
                 displayNotSelectedDevices(it.toList())
-            else
+                binding.emptyNotSelected.root.visibility = GONE
+            }
+            else{
                 displayNotSelectedDevices(mutableListOf())
+                binding.emptyNotSelected.root.visibility = VISIBLE
+            }
         })
     }
 
     private fun displayWelcomeDialog(mutableSet: MutableSet<String>){
         dialog = WelcomeDialog(this, mutableSet.toSet())
+        val metrics = resources.displayMetrics
+        val width = metrics.widthPixels
+        val height = metrics.heightPixels
+        dialog.window?.setLayout((width), (height))
         dialog.setDialogResult(this)
         dialog.show()
     }
@@ -78,13 +100,28 @@ class DispagerMainActivity : AppCompatActivity(), OnDialogSubmit {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.edit){
+            MaterialDialog(this).show {
+                positiveButton(text = "Submit")
+                listItemsMultiChoice(items = dispagerMainViewModel.allDevicesLiveData.value?.toList(),
+                        initialSelection = dispagerMainViewModel.getSetOfChoicesIndices(), allowEmptySelection = true){ dialog, indices, items ->
+                    val selectedDevices: List<String> = Helper.charSequenceToString(items)
+                    val notSelectedDevices = dispagerMainViewModel.allDevicesLiveData.value!! - selectedDevices
+                    dispagerMainViewModel.saveUserChoices(selectedDevices, notSelectedDevices.toList())
+                }
+                cancelable(false)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDialogSubmit(selectedNames: List<String>, notSelectedNames: List<String>) {
-        dispagerMainViewModel.saveSelectedDevices(selectedNames, notSelectedNames)
+        dispagerMainViewModel.saveUserChoices(selectedNames, notSelectedNames)
         displaySelectedDevices(selectedNames)
         displayNotSelectedDevices(notSelectedNames)
         dialog.dismiss()
@@ -101,15 +138,15 @@ class DispagerMainActivity : AppCompatActivity(), OnDialogSubmit {
 
     private fun displaySelectedDevices(selectedNames: List<String>?) {
         mBTSelectedNamesRecyclerAdapter = BTNamesRecyclerAdapter(this, selectedNames)
-        selectedNamesRecyclerView.layoutManager = LinearLayoutManager(this)
-        selectedNamesRecyclerView.adapter = mBTSelectedNamesRecyclerAdapter
+        binding.btDevicesNamesRv.layoutManager = LinearLayoutManager(this)
+        binding.btDevicesNamesRv.adapter = mBTSelectedNamesRecyclerAdapter
         Log.d(tag, "onDisplay: selected size" + selectedNames!!.size)
     }
 
     private fun displayNotSelectedDevices(notSelectedNames: List<String>?) {
         mBTNamesNotSelectedRecyclerAdapter = BTNamesRecyclerAdapter(this, notSelectedNames)
-        notSelectedNamesRecyclerView.layoutManager = LinearLayoutManager(this)
-        notSelectedNamesRecyclerView.adapter = mBTNamesNotSelectedRecyclerAdapter
+        binding.notSelectedDevicesRv.layoutManager = LinearLayoutManager(this)
+        binding.notSelectedDevicesRv.adapter = mBTNamesNotSelectedRecyclerAdapter
         Log.d(tag, "onDisplay: not selected size" + notSelectedNames!!.size)
     }
 }

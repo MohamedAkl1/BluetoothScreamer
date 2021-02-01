@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Dispager</string>
-    <string name="bs_welcome_screen">ًWelcome to Bluetooth Screamer, Please choose the devices to alert you about:</string>
+    <string name="bs_welcome_screen">ًWelcome to Dispager, Please choose the devices to alert you about</string>
     <string name="welcome_dialog_add_button">add</string>
     <string name="submit">submit</string>
-    <string name="devices_set_up_for_alert">Selected devices for alert</string>
-    <string name="not_selected_devices">Not selected Devices:</string>
+    <string name="devices_set_up_for_alert">SELECTED DEVICES FOR ALERT</string>
+    <string name="not_selected_devices">NOT SELECTED DEVICES</string>
     <string name="edit">Edit</string>
     <string name="settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
@@ -83,4 +83,6 @@
     <string name="dismiss">dismiss</string>
     <string name="added">added</string>
     <string name="add">add</string>
+    <string name="empty_content_description">Empty image figure</string>
+    <string name="empty_selection_string">You haven\'t selected any devices</string>
 </resources>

@@ -1,8 +1,6 @@
 package com.android.akl.bluetoothscreamer.ui
 
-import android.app.Application
 import android.content.Context
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.android.akl.bluetoothscreamer.repository.DispagerRepository
@@ -25,8 +23,15 @@ class DispagerMainViewModel() : ViewModel() {
         dispagerRepository.getPairedNames()
     }
 
-    fun saveSelectedDevices(selectedNames: List<String>, notSelectedNames: List<String>) {
-        dispagerRepository.saveSelectedDevices(selectedNames, notSelectedNames)
+    fun getSetOfChoicesIndices(): IntArray {
+        val devicesIndices = ArrayList<Int>()
+        for (device in selectedDevicesLiveData.value!!) {
+            devicesIndices.add(allDevicesLiveData.value!!.indexOf(device))
+        }
+        return devicesIndices.toIntArray()
     }
 
+    fun saveUserChoices(selectedNames: List<String>, notSelectedNames: List<String>) {
+        dispagerRepository.saveSelectedDevices(selectedNames, notSelectedNames)
+    }
 }

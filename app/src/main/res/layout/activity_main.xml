@@ -6,54 +6,94 @@
     android:layout_height="match_parent"
     tools:context="com.android.akl.bluetoothscreamer.ui.DispagerMainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:id="@+id/selected_devices_layout"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        android:layout_marginTop="8dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/devices_set_up_for_alert"
             android:id="@+id/devices_set_up_for_alert_id"
-            app:layout_constraintBottom_toTopOf="@id/bt_devices_names_rv"
+            app:layout_constraintTop_toTopOf="parent"
             android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="8dp"
             />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:id="@+id/bt_devices_names_rv"
             app:layout_constraintTop_toBottomOf="@id/devices_set_up_for_alert_id"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"/>
+
+        <include
+            android:id="@+id/empty_selected"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/empty_data_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/selected_devices_layout"
-        android:layout_marginTop="13dp">
+        android:layout_height="0dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
+            android:id="@+id/not_selected_devices_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:id="@+id/not_selected_devices_tv"
-            android:textSize="15sp"
             android:layout_marginStart="8dp"
-            android:text="@string/not_selected_devices"/>
+            android:text="@string/not_selected_devices"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/not_selected_devices_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/not_selected_devices_rv"
-            app:layout_constraintTop_toBottomOf="@id/not_selected_devices_tv"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/not_selected_devices_tv" />
+        <include
+            android:id="@+id/empty_not_selected"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/empty_data_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

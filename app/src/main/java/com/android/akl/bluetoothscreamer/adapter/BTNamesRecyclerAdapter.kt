@@ -30,6 +30,5 @@ class BTNamesRecyclerAdapter(context: Context?, names1: List<String>?) : Recycle
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var bTNameTextView: TextView = itemView.findViewById(R.id.bt_device_name_tv)
-        var mButton: Button = itemView.findViewById(R.id.edit_device_edit_text)
     }
 }

@@ -10,18 +10,17 @@ import com.android.akl.bluetoothscreamer.util.Constants.Companion.ALL_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.NOT_SELECTED_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.SELECTED_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.DISPAGER_DEVICES
-import java.util.HashSet
 
 /**
  * Created by Mohamed Akl on 1/22/2021.
  */
 class DispagerRepository {
 
-    var sharedPreferences: SharedPreferences? = null
+    private var sharedPreferences: SharedPreferences? = null
     var selectedDevices: MutableLiveData<MutableSet<String>?> = MutableLiveData<MutableSet<String>?>()
     var notSelectedDevices: MutableLiveData<MutableSet<String>?> = MutableLiveData<MutableSet<String>?>()
     var allDevices: MutableLiveData<MutableSet<String>?> = MutableLiveData<MutableSet<String>?>()
-    val bluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+    private val bluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
     fun isPreferencesAvailable(context: Context): Boolean{
         sharedPreferences = context.getSharedPreferences(DISPAGER_DEVICES, AppCompatActivity.MODE_PRIVATE)
@@ -29,7 +28,6 @@ class DispagerRepository {
             selectedDevices.value = sharedPreferences?.getStringSet(SELECTED_DEVICES, null)
             notSelectedDevices.value = sharedPreferences?.getStringSet(NOT_SELECTED_DEVICES, null)
             allDevices.value = sharedPreferences?.getStringSet(ALL_DEVICES, null)
-            val x = bluetoothAdapter.bondedDevices.size
             val one = allDevices.value != null && allDevices.value?.size == bluetoothAdapter.bondedDevices.size
             val two = selectedDevices.value != null || notSelectedDevices.value != null
             one && two
@@ -44,6 +42,7 @@ class DispagerRepository {
 
     fun getPairedNames() {
         val devices = bluetoothAdapter.bondedDevices
+
         if (allDevices.value == null){
             allDevices.value = mutableSetOf()
         }
