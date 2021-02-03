@@ -7,15 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.ALL_DEVICES
+import com.android.akl.bluetoothscreamer.util.Constants.Companion.DEFAULT_END_TIME
+import com.android.akl.bluetoothscreamer.util.Constants.Companion.DEFAULT_START_TIME
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.NOT_SELECTED_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.SELECTED_DEVICES
 import com.android.akl.bluetoothscreamer.util.Constants.Companion.DISPAGER_DEVICES
+import com.android.akl.bluetoothscreamer.util.Constants.Companion.END_TIME
+import com.android.akl.bluetoothscreamer.util.Constants.Companion.START_TIME
 
 /**
  * Created by Mohamed Akl on 1/22/2021.
  */
 class DispagerRepository {
 
+    val startTime: MutableLiveData<String> = MutableLiveData<String>()
+    val endTime: MutableLiveData<String> = MutableLiveData<String>()
     private var sharedPreferences: SharedPreferences? = null
     var selectedDevices: MutableLiveData<MutableSet<String>?> = MutableLiveData<MutableSet<String>?>()
     var notSelectedDevices: MutableLiveData<MutableSet<String>?> = MutableLiveData<MutableSet<String>?>()
@@ -28,6 +34,8 @@ class DispagerRepository {
             selectedDevices.value = sharedPreferences?.getStringSet(SELECTED_DEVICES, null)
             notSelectedDevices.value = sharedPreferences?.getStringSet(NOT_SELECTED_DEVICES, null)
             allDevices.value = sharedPreferences?.getStringSet(ALL_DEVICES, null)
+            startTime.value = sharedPreferences?.getString(START_TIME, "00:00")
+            endTime.value = sharedPreferences?.getString(END_TIME, "08:00")
             val one = allDevices.value != null && allDevices.value?.size == bluetoothAdapter.bondedDevices.size
             val two = selectedDevices.value != null || notSelectedDevices.value != null
             one && two
@@ -36,8 +44,22 @@ class DispagerRepository {
             false
     }
 
-    fun isBTOn(): Boolean {
-        return bluetoothAdapter.isEnabled
+    fun getSelectedFromPref(context: Context): MutableSet<String>? {
+        if (sharedPreferences == null)
+            sharedPreferences = context.getSharedPreferences(DISPAGER_DEVICES, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences?.getStringSet(SELECTED_DEVICES, null)
+    }
+
+    fun getNotSelectedFromPref(context: Context): MutableSet<String>?{
+        if (sharedPreferences == null)
+            sharedPreferences = context.getSharedPreferences(DISPAGER_DEVICES, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences?.getStringSet(NOT_SELECTED_DEVICES, null)
+    }
+
+    fun getAllFromPref(context: Context): MutableSet<String>?{
+        if (sharedPreferences == null)
+            sharedPreferences = context.getSharedPreferences(DISPAGER_DEVICES, AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences?.getStringSet(ALL_DEVICES, null)
     }
 
     fun getPairedNames() {
@@ -55,6 +77,10 @@ class DispagerRepository {
     fun saveSelectedDevices(selectedNames: List<String>, notSelectedNames: List<String>) {
         selectedDevices.value = selectedNames.toMutableSet()
         notSelectedDevices.value = notSelectedNames.toMutableSet()
+        if(startTime.value == null || endTime.value == null){
+            startTime.value = DEFAULT_START_TIME
+            endTime.value = DEFAULT_END_TIME
+        }
         addToSharedPreferences()
     }
 
@@ -63,6 +89,30 @@ class DispagerRepository {
             putStringSet(SELECTED_DEVICES, selectedDevices.value)
             putStringSet(NOT_SELECTED_DEVICES, notSelectedDevices.value)
             putStringSet(ALL_DEVICES, allDevices.value)
+            putString(START_TIME, startTime.value)
+            putString(END_TIME, endTime.value)
+        }
+    }
+
+    fun saveSelectedFromNotification(allDevices: MutableSet<String>,
+                                     selectedDevices: MutableSet<String> = this.selectedDevices.value!!,
+                                     notSelectedDevices: MutableSet<String> = this.notSelectedDevices.value!!) {
+        this.selectedDevices.value = selectedDevices
+        this.allDevices.value = allDevices
+        this.notSelectedDevices.value = notSelectedDevices
+        addToSharedPreferences()
+    }
+
+    fun saveTime(startTime: String, endTime: String) {
+        this.startTime.value = startTime
+        this.endTime.value = endTime
+        saveTimeInSP()
+    }
+
+    private fun saveTimeInSP(){
+        sharedPreferences!!.edit(commit = true){
+            putString(START_TIME, startTime.value)
+            putString(END_TIME, endTime.value)
         }
     }
 }

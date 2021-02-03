@@ -4,7 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.akl.bluetoothscreamer.R
 import com.android.akl.bluetoothscreamer.adapter.WelcomeRecyclerAdapter.WelcomeViewHolder
@@ -17,7 +18,6 @@ class WelcomeRecyclerAdapter(context: Context, devicesNames: Set<String>?) : Rec
 
     private val names: MutableList<String> = devicesNames!!.toMutableList()
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(context)
-    private val mContext: Context = context
     var selectedNames: MutableList<String> = ArrayList()
     var notSelectedNames: MutableList<String> = devicesNames!!.toMutableList()
 
@@ -28,14 +28,11 @@ class WelcomeRecyclerAdapter(context: Context, devicesNames: Set<String>?) : Rec
 
     override fun onBindViewHolder(welcomeViewHolder: WelcomeViewHolder, position: Int) {
         welcomeViewHolder.pairedName.text = names[position]
-        Toast.makeText(mContext, "added " + names[position], Toast.LENGTH_SHORT).show()
         welcomeViewHolder.addCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 selectedNames.add(names[welcomeViewHolder.adapterPosition])
-                Toast.makeText(mContext, "added", Toast.LENGTH_SHORT).show()
                 notSelectedNames.remove(names[welcomeViewHolder.adapterPosition])
             }else{
-                Toast.makeText(mContext, "Removed", Toast.LENGTH_SHORT).show()
                 selectedNames.remove(names[welcomeViewHolder.adapterPosition])
                 notSelectedNames.add(names[welcomeViewHolder.adapterPosition])
             }
@@ -48,7 +45,6 @@ class WelcomeRecyclerAdapter(context: Context, devicesNames: Set<String>?) : Rec
 
     inner class WelcomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var pairedName: TextView = itemView.findViewById(R.id.welcome_dialog_bt_name_tv)
-//        var addButton: Button = itemView.findViewById(R.id.welcome_add_button)
         var addCheckBox: CheckBox = itemView.findViewById(R.id.add_checkbox)
     }
 }

@@ -10,5 +10,9 @@ class Constants {
         const val SELECTED_DEVICES = "selected_devices"
         const val NOT_SELECTED_DEVICES = "not_selected_devices"
         const val ALL_DEVICES = "all_devices"
+        const val START_TIME = "start_time"
+        const val END_TIME = "end_time"
+        const val DEFAULT_START_TIME = "00:00"
+        const val DEFAULT_END_TIME = "08:00"
     }
 }

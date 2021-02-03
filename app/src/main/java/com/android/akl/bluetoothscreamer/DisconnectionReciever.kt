@@ -5,21 +5,25 @@ import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.android.akl.bluetoothscreamer.util.Constants.Companion.SELECTED_DEVICES
-import com.android.akl.bluetoothscreamer.util.Constants.Companion.DISPAGER_DEVICES
+import com.android.akl.bluetoothscreamer.repository.DispagerRepository
+import com.android.akl.bluetoothscreamer.util.Helper
 
 class DisconnectionReciever : BroadcastReceiver() {
+    val repo: DispagerRepository = DispagerRepository()
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == BluetoothDevice.ACTION_ACL_DISCONNECTED) {
-            if (BluetoothAdapter.getDefaultAdapter().isEnabled) {
-                val sharedPreferences = context.getSharedPreferences(DISPAGER_DEVICES, Context.MODE_PRIVATE)
-                val selectedDevices = sharedPreferences.getStringSet(SELECTED_DEVICES, null)
-                val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                if (selectedDevices!!.contains(device?.name)) {
-                    val i = Intent(context, DisconnectionActivity::class.java)
-                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    i.putExtra("device_name", device?.name)
-                    context.startActivity(i)
+        if(!Helper.isOnOffHours(context)){
+            if (intent.action == BluetoothDevice.ACTION_ACL_DISCONNECTED) {
+                if (BluetoothAdapter.getDefaultAdapter().isEnabled) {
+                    val selectedDevices = repo.getSelectedFromPref(context)
+                    if(selectedDevices != null){
+                        val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+                        if (selectedDevices.contains(device?.name)) {
+                            val i = Intent(context, DisconnectionActivity::class.java)
+                            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            i.putExtra("device_name", device?.name)
+                            context.startActivity(i)
+                        }
+                    }
                 }
             }
         }

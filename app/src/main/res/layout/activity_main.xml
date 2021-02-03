@@ -22,15 +22,12 @@
         >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/devices_set_up_for_alert"
+            style="@style/title_text"
             android:id="@+id/devices_set_up_for_alert_id"
+            android:text="@string/devices_set_up_for_alert"
             app:layout_constraintTop_toTopOf="parent"
-            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="8dp"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -61,11 +58,8 @@
 
         <TextView
             android:id="@+id/not_selected_devices_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            style="@style/title_text"
             android:text="@string/not_selected_devices"
-            android:textSize="15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -78,9 +72,7 @@
             app:layout_constraintTop_toBottomOf="@id/not_selected_devices_tv" />
         <include
             android:id="@+id/empty_not_selected"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/empty_layout_style"
             layout="@layout/empty_data_layout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

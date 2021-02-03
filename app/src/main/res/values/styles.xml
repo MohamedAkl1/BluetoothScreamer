@@ -15,4 +15,17 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="title_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+
+    <style name="empty_layout_style">
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

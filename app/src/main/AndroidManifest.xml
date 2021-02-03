@@ -43,7 +43,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.android.akl.bluetoothscreamer.ShowNewPairedDeviceDialog"/>
         <activity android:name="com.android.akl.bluetoothscreamer.DisconnectionActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 

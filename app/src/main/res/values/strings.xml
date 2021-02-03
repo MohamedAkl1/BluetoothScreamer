@@ -85,4 +85,7 @@
     <string name="add">add</string>
     <string name="empty_content_description">Empty image figure</string>
     <string name="empty_selection_string">You haven\'t selected any devices</string>
+    <string name="off_hours">Off Hours</string>
+    <string name="start">start</string>
+    <string name="end">End</string>
 </resources>
